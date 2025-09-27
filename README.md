@@ -50,3 +50,11 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 Початок роботи
+npm install -g expo
+
+expo install @react-native-async-storage/async-storage
+
+expo install @expo/vector-icons
+
+npm install react-hook-form @hookform/resolvers yup
+npm install react-native-toast-message
