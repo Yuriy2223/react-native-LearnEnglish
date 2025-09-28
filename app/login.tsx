@@ -1,3 +1,6 @@
+import { useTheme } from "@/providers/ThemeProvider";
+import { useToast } from "@/providers/ToastProvider";
+import { useUser } from "@/providers/UserProvider";
 import { loginSchema } from "@/validation/validation";
 import { Ionicons } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,9 +17,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useTheme } from "./provider/ThemeProvider";
-import { useToast } from "./provider/ToastProvider";
-import { useUser } from "./provider/UserProvider";
 
 interface Navigation {
   navigate: (screen: string, params?: any) => void;
@@ -58,7 +58,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
 
     try {
       //  API виклик для авторизації
-      //  імітуємо успішний вхід
+
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const userData = {
