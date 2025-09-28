@@ -58,3 +58,5 @@ expo install @expo/vector-icons
 
 npm install react-hook-form @hookform/resolvers yup
 npm install react-native-toast-message
+
+npx expo start --clear --android

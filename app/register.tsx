@@ -1,3 +1,6 @@
+import { useTheme } from "@/providers/ThemeProvider";
+import { useToast } from "@/providers/ToastProvider";
+import { useUser } from "@/providers/UserProvider";
 import { registerSchema } from "@/validation/validation";
 import { Ionicons } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,9 +17,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useTheme } from "./provider/ThemeProvider";
-import { useToast } from "./provider/ToastProvider";
-import { useUser } from "./provider/UserProvider";
 
 interface Navigation {
   goBack: () => void;

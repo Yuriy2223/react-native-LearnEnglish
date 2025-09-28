@@ -1,4 +1,3 @@
-import { lightTheme, Theme } from "@/app/provider/ThemeProvider";
 import { Ionicons } from "@expo/vector-icons";
 import React, {
   createContext,
@@ -14,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useTheme } from "./ThemeProvider";
 
 interface ToastConfig {
   id: string;
@@ -42,8 +42,8 @@ export const useToast = () => {
 const Toast: React.FC<{
   toast: ToastConfig;
   onHide: (id: string) => void;
-  theme: Theme;
-}> = ({ toast, onHide, theme }) => {
+}> = ({ toast, onHide }) => {
+  const { theme } = useTheme();
   const [fadeAnim] = useState(new Animated.Value(0));
   const [slideAnim] = useState(new Animated.Value(-100));
 
@@ -147,8 +147,7 @@ const Toast: React.FC<{
 
 export const ToastProvider: React.FC<{
   children: ReactNode;
-  theme?: Theme;
-}> = ({ children, theme = lightTheme }) => {
+}> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastConfig[]>([]);
 
   const showToast = useCallback((config: Omit<ToastConfig, "id">) => {
@@ -175,12 +174,7 @@ export const ToastProvider: React.FC<{
       {children}
       <View style={styles.toastWrapper}>
         {toasts.map((toast) => (
-          <Toast
-            key={toast.id}
-            toast={toast}
-            onHide={hideToast}
-            theme={theme}
-          />
+          <Toast key={toast.id} toast={toast} onHide={hideToast} />
         ))}
       </View>
     </ToastContext.Provider>
@@ -202,10 +196,7 @@ const styles = StyleSheet.create({
     left: 16,
     right: 16,
     borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.25)",
     elevation: 5,
   },
   bottomPosition: {
